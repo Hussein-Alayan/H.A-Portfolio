@@ -128,3 +128,44 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Mobile optimizations */
+@layer utilities {
+  /* Improve touch targets on mobile */
+  .touch-target {
+    @apply min-h-11 min-w-11;
+  }
+  
+  /* Better text readability on mobile */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  .mobile-safe {
+    @apply overflow-x-hidden;
+  }
+  
+  /* Responsive container with better mobile padding */
+  .container-mobile {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Improve mobile scrolling performance */
+@media (max-width: 768px) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Better tap targets for mobile */
+  button, a {
+    @apply touch-target;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

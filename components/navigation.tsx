@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { useScrollColor } from "./scroll-color-provider";
 import { ColorReactiveText } from "./color-reactive-components";
 
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("hero");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currentTheme } = useScrollColor();
 
   useEffect(() => {
@@ -59,10 +61,12 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-lg font-semibold"
+            className="text-xl font-bold"
           >
             <ColorReactiveText variant="gradient">HA</ColorReactiveText>
           </motion.div>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, index) => (
               <motion.a
@@ -95,7 +99,60 @@ export function Navigation() {
               </motion.a>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="md:hidden p-2 rounded-lg transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              backgroundColor: `${currentTheme.primary}15`,
+              color: currentTheme.primary,
+            }}
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </motion.button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden border-t overflow-hidden"
+              style={{ borderColor: `${currentTheme.primary}30` }}
+            >
+              <div className="py-4 space-y-2">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                    className={`block px-4 py-3 text-base transition-all duration-300 rounded-lg ${
+                      activeSection === item.id
+                        ? "font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    style={{
+                      color: activeSection === item.id ? currentTheme.primary : undefined,
+                      backgroundColor: activeSection === item.id ? `${currentTheme.primary}10` : undefined,
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );

@@ -13,24 +13,25 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
-      {/* Single subtle orb */}
-      <PulsatingOrb size={300} className="top-1/4 right-1/4 opacity-20" />
+      {/* Single subtle orb - responsive positioning */}
+      <PulsatingOrb size={200} className="top-1/4 right-1/4 opacity-20 sm:block hidden" />
+      <PulsatingOrb size={120} className="top-1/3 right-1/6 opacity-15 sm:hidden block" />
 
       <div className="container mx-auto max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center space-y-8"
+          className="text-center space-y-6 sm:space-y-8"
         >
           {/* Main typing header */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-tight"
           >
             <ColorReactiveText variant="gradient">
               <TypingAnimation
@@ -47,7 +48,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.02 }}
             transition={{ delay: 1.2 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-balance cursor-default"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-balance cursor-default"
           >
             <ColorReactiveText variant="solid">
               Hussein Alayan
@@ -59,7 +60,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.7 }}
-            className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed px-4"
           >
             Building intelligent web applications with{" "}
             <ColorReactiveText variant="solid">
@@ -73,7 +74,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2 }}
-            className="flex items-center justify-center gap-4 pt-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4"
           >
             <ColorReactiveButton href="#contact" variant="primary">
               Get in touch

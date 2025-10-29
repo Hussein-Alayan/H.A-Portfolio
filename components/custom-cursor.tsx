@@ -7,8 +7,17 @@ export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    // Check if device is mobile/touch
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
       if (!isVisible) setIsVisible(true)
@@ -17,26 +26,34 @@ export function CustomCursor() {
     const handleMouseEnter = () => setIsHovering(true)
     const handleMouseLeave = () => setIsHovering(false)
 
-    // Track mouse movement
-    window.addEventListener("mousemove", updateMousePosition)
+    // Only add mouse tracking on non-mobile devices
+    if (!isMobile) {
+      // Track mouse movement
+      window.addEventListener("mousemove", updateMousePosition)
 
-    // Track hoverable elements
-    const hoverElements = document.querySelectorAll("a, button, [role='button']")
-    hoverElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter)
-      el.addEventListener("mouseleave", handleMouseLeave)
-    })
-
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition)
+      // Track hoverable elements
+      const hoverElements = document.querySelectorAll("a, button, [role='button']")
       hoverElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter)
-        el.removeEventListener("mouseleave", handleMouseLeave)
+        el.addEventListener("mouseenter", handleMouseEnter)
+        el.addEventListener("mouseleave", handleMouseLeave)
       })
     }
-  }, [isVisible])
 
-  if (!isVisible) return null
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      if (!isMobile) {
+        window.removeEventListener("mousemove", updateMousePosition)
+        const hoverElements = document.querySelectorAll("a, button, [role='button']")
+        hoverElements.forEach((el) => {
+          el.removeEventListener("mouseenter", handleMouseEnter)
+          el.removeEventListener("mouseleave", handleMouseLeave)
+        })
+      }
+    }
+  }, [isVisible, isMobile])
+
+  // Don't render custom cursor on mobile devices
+  if (!isVisible || isMobile) return null
 
   return (
     <>

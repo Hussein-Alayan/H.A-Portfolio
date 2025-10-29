@@ -44,10 +44,10 @@ export function ProjectSection() {
             whileHover={{ y: -8, scale: 1.02 }}
             className="transition-all"
           >
-            <ColorReactiveCard className="p-6">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
+            <ColorReactiveCard className="p-4 sm:p-6">
+              <CardHeader className="px-0 pt-0">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                  <div className="space-y-2 flex-1">
                     <CardTitle className="text-2xl">
                       <ColorReactiveText variant="solid">
                         Slotify
@@ -59,25 +59,25 @@ export function ProjectSection() {
                       </ColorReactiveText>
                     </CardDescription>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 sm:shrink-0">
                     <a
                       href="https://github.com/Hussein-Alayan/Slotify"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 hover:bg-secondary rounded-lg transition-colors"
                     >
-                      <Github size={20} />
+                      <Github size={18} />
                     </a>
                     <a
                       href="#"
                       className="p-2 hover:bg-secondary rounded-lg transition-colors"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink size={18} />
                     </a>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 sm:space-y-6 px-0">
                 <p className="text-muted-foreground leading-relaxed">
                   A comprehensive appointment management platform featuring an
                   intelligent AI assistant that helps users schedule, manage,

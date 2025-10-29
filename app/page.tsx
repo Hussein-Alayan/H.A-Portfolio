@@ -14,7 +14,7 @@ import { CustomCursor } from "@/components/custom-cursor";
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative mobile-safe">
       <AnimatedBackground />
       <AnimatedShapes />
       <DynamicBackground />

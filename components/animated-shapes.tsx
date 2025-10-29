@@ -8,11 +8,11 @@ export function AnimatedShapes() {
 
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-      {/* Floating Geometric Shapes */}
+      {/* Floating Geometric Shapes - Reduced on mobile */}
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute opacity-15"
+          className="absolute opacity-15 hidden sm:block"
           style={{
             left: `${(i * 15) % 100}%`,
             top: `${(i * 25) % 100}%`,
@@ -223,6 +223,31 @@ export function AnimatedBackground() {
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 3,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Mobile-only simplified animations */}
+      <div className="sm:hidden">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`mobile-${i}`}
+            className="absolute w-8 h-8 rounded-full opacity-10"
+            style={{
+              backgroundColor: i % 2 === 0 ? currentTheme.primary : currentTheme.accent,
+              left: `${(i * 30) + 20}%`,
+              top: `${(i * 20) + 30}%`,
+            }}
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 1.5,
             }}
           />
         ))}
