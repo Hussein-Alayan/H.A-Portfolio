@@ -91,7 +91,7 @@ export function Navigation() {
                 {activeSection === item.id && (
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
-                    style={{ background: currentTheme.gradient }}
+                    style={{ backgroundImage: currentTheme.gradient }}
                     layoutId="activeTab"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />

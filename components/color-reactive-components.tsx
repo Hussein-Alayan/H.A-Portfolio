@@ -90,7 +90,7 @@ export function ColorReactiveText({
     switch (variant) {
       case "gradient":
         return {
-          background: currentTheme.gradient,
+          backgroundImage: currentTheme.gradient,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
