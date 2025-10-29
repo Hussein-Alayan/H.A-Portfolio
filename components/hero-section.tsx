@@ -16,8 +16,14 @@ export function HeroSection() {
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
       {/* Single subtle orb - responsive positioning */}
-      <PulsatingOrb size={200} className="top-1/4 right-1/4 opacity-20 sm:block hidden" />
-      <PulsatingOrb size={120} className="top-1/3 right-1/6 opacity-15 sm:hidden block" />
+      <PulsatingOrb
+        size={200}
+        className="top-1/4 right-1/4 opacity-20 sm:block hidden"
+      />
+      <PulsatingOrb
+        size={120}
+        className="top-1/3 right-1/6 opacity-15 sm:hidden block"
+      />
 
       <div className="container mx-auto max-w-4xl relative z-10">
         <motion.div

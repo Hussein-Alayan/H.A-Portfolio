@@ -141,8 +141,14 @@ export function Navigation() {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                     style={{
-                      color: activeSection === item.id ? currentTheme.primary : undefined,
-                      backgroundColor: activeSection === item.id ? `${currentTheme.primary}10` : undefined,
+                      color:
+                        activeSection === item.id
+                          ? currentTheme.primary
+                          : undefined,
+                      backgroundColor:
+                        activeSection === item.id
+                          ? `${currentTheme.primary}10`
+                          : undefined,
                     }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

@@ -235,9 +235,10 @@ export function AnimatedBackground() {
             key={`mobile-${i}`}
             className="absolute w-8 h-8 rounded-full opacity-10"
             style={{
-              backgroundColor: i % 2 === 0 ? currentTheme.primary : currentTheme.accent,
-              left: `${(i * 30) + 20}%`,
-              top: `${(i * 20) + 30}%`,
+              backgroundColor:
+                i % 2 === 0 ? currentTheme.primary : currentTheme.accent,
+              left: `${i * 30 + 20}%`,
+              top: `${i * 20 + 30}%`,
             }}
             animate={{
               scale: [1, 1.5, 1],
