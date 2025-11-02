@@ -102,7 +102,9 @@ export function ContactSection() {
                 }}
               >
                 <ColorReactiveCard
-                  className={`p-6 sm:p-8 h-full ${item.href ? "cursor-pointer" : ""}`}
+                  className={`p-6 sm:p-8 h-full ${
+                    item.href ? "cursor-pointer" : ""
+                  }`}
                 >
                   {item.href ? (
                     <a
@@ -122,7 +124,10 @@ export function ContactSection() {
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <item.icon size={28} className="text-primary sm:w-8 sm:h-8" />
+                        <item.icon
+                          size={28}
+                          className="text-primary sm:w-8 sm:h-8"
+                        />
                       </motion.div>
                       <div className="space-y-1 sm:space-y-2 min-w-0 w-full">
                         <p className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">
@@ -138,7 +143,10 @@ export function ContactSection() {
                   ) : (
                     <div className="flex flex-col items-center text-center gap-4 sm:gap-6 h-full">
                       <motion.div className="p-3 sm:p-4 rounded-xl bg-primary/20">
-                        <item.icon size={28} className="text-primary sm:w-8 sm:h-8" />
+                        <item.icon
+                          size={28}
+                          className="text-primary sm:w-8 sm:h-8"
+                        />
                       </motion.div>
                       <div className="space-y-1 sm:space-y-2 min-w-0 w-full">
                         <p className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">
@@ -254,7 +262,9 @@ export function ContactSection() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 text-sm sm:text-base text-muted-foreground mt-6 sm:mt-8">
                     <Code className="w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="text-center md:text-left">Open Source • Always Learning</span>
+                    <span className="text-center md:text-left">
+                      Open Source • Always Learning
+                    </span>
                   </div>
                 </motion.div>
               </div>
@@ -268,7 +278,7 @@ export function ContactSection() {
                 className="mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-border/50 text-center"
               >
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground px-4 leading-relaxed">
-                  © {new Date().getFullYear()} Hussein Alayan. 
+                  © {new Date().getFullYear()} Hussein Alayan.
                   <span className="block sm:inline sm:ml-1">
                     Crafted with Next.js, Framer Motion & Tailwind CSS.
                   </span>
