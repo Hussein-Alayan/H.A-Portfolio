@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { SkillsSection } from "@/components/skills-section";
+import { EducationSection } from "@/components/education-section";
 import { ProjectSection } from "@/components/project-section";
 import { VolunteerSection } from "@/components/volunteer-section";
 import { ContactSection } from "@/components/contact-section";
