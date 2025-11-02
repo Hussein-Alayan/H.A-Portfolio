@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, Code2 } from "lucide-react";
+import {
+  GraduationCap,
+  Calendar,
+  MapPin,
+  Award,
+  BookOpen,
+  Code2,
+} from "lucide-react";
 import {
   ColorReactiveText,
   ColorReactiveCard,
@@ -16,13 +23,14 @@ const educationData = [
     type: "Bachelor's Degree",
     icon: GraduationCap,
     status: "In Progress",
-    description: "Comprehensive computer science program covering software engineering, algorithms, data structures, database systems, and modern programming paradigms.",
+    description:
+      "Comprehensive computer science program covering software engineering, algorithms, data structures, database systems, and modern programming paradigms.",
     highlights: [
       "Software Engineering & System Design",
       "Advanced Algorithms & Data Structures",
       "Database Management Systems",
       "Object-Oriented Programming",
-      "Web Development Technologies"
+      "Web Development Technologies",
     ],
     gradient: "from-blue-500/10 to-cyan-500/10",
     iconColor: "text-blue-400",
@@ -35,13 +43,14 @@ const educationData = [
     type: "Technical Bachelor",
     icon: Code2,
     status: "In Progress",
-    description: "Specialized technical program focusing on administrative systems, business informatics, and enterprise software solutions.",
+    description:
+      "Specialized technical program focusing on administrative systems, business informatics, and enterprise software solutions.",
     highlights: [
       "Business Information Systems",
       "Enterprise Resource Planning",
       "Database Administration",
       "System Analysis & Design",
-      "IT Project Management"
+      "IT Project Management",
     ],
     gradient: "from-purple-500/10 to-pink-500/10",
     iconColor: "text-purple-400",
@@ -54,13 +63,14 @@ const educationData = [
     type: "Intensive Bootcamp",
     icon: Code2,
     status: "Completed",
-    description: "Intensive full-stack software engineering bootcamp focusing on modern web technologies, agile methodologies, and real-world project development.",
+    description:
+      "Intensive full-stack software engineering bootcamp focusing on modern web technologies, agile methodologies, and real-world project development.",
     highlights: [
       "Full-Stack Web Development",
       "Modern JavaScript Frameworks",
       "API Development & Integration",
       "Agile Development Practices",
-      "Industry Best Practices"
+      "Industry Best Practices",
     ],
     gradient: "from-green-500/10 to-emerald-500/10",
     iconColor: "text-green-400",
@@ -73,13 +83,14 @@ const educationData = [
     type: "Technical Diploma",
     icon: BookOpen,
     status: "Completed",
-    description: "Foundation program in information technology covering programming fundamentals, computer networks, and digital systems.",
+    description:
+      "Foundation program in information technology covering programming fundamentals, computer networks, and digital systems.",
     highlights: [
       "Programming Fundamentals",
       "Computer Networks",
       "Digital Systems & Hardware",
       "IT Support & Maintenance",
-      "Database Basics"
+      "Database Basics",
     ],
     gradient: "from-orange-500/10 to-red-500/10",
     iconColor: "text-orange-400",
@@ -88,7 +99,10 @@ const educationData = [
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/20">
+    <section
+      id="education"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/20"
+    >
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, x: 80 }}
@@ -106,10 +120,13 @@ export function EducationSection() {
             className="text-center space-y-4"
           >
             <h2 className="text-3xl sm:text-4xl font-bold">
-              <ColorReactiveText variant="gradient">Education</ColorReactiveText>
+              <ColorReactiveText variant="gradient">
+                Education
+              </ColorReactiveText>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
-              Building a strong foundation through continuous learning and academic excellence in computer science and software engineering.
+              Building a strong foundation through continuous learning and
+              academic excellence in computer science and software engineering.
             </p>
           </motion.div>
 
@@ -139,9 +156,11 @@ export function EducationSection() {
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          <education.icon className={`w-6 h-6 ${education.iconColor}`} />
+                          <education.icon
+                            className={`w-6 h-6 ${education.iconColor}`}
+                          />
                         </motion.div>
-                        
+
                         <div className="space-y-2 flex-1">
                           <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                             <h3 className="text-xl sm:text-2xl font-bold">
@@ -160,13 +179,13 @@ export function EducationSection() {
                               {education.status}
                             </motion.span>
                           </div>
-                          
+
                           <h4 className="text-lg font-semibold">
                             <ColorReactiveText variant="accent">
                               {education.institution}
                             </ColorReactiveText>
                           </h4>
-                          
+
                           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-muted-foreground">
                             <div className="flex items-center gap-2">
                               <MapPin className="w-4 h-4" />
@@ -179,7 +198,7 @@ export function EducationSection() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <motion.div
                         className="flex items-center gap-2 px-3 py-1 rounded-lg bg-secondary/50 lg:shrink-0"
                         whileHover={{ scale: 1.05 }}
@@ -204,22 +223,25 @@ export function EducationSection() {
                         </ColorReactiveText>
                       </h5>
                       <div className="flex flex-wrap gap-2">
-                        {education.highlights.map((highlight, highlightIndex) => (
-                          <motion.span
-                            key={highlight}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.3,
-                              delay: 0.5 + index * 0.15 + highlightIndex * 0.05,
-                            }}
-                            whileHover={{ scale: 1.05 }}
-                            className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors cursor-default"
-                          >
-                            {highlight}
-                          </motion.span>
-                        ))}
+                        {education.highlights.map(
+                          (highlight, highlightIndex) => (
+                            <motion.span
+                              key={highlight}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{
+                                duration: 0.3,
+                                delay:
+                                  0.5 + index * 0.15 + highlightIndex * 0.05,
+                              }}
+                              whileHover={{ scale: 1.05 }}
+                              className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors cursor-default"
+                            >
+                              {highlight}
+                            </motion.span>
+                          )
+                        )}
                       </div>
                     </div>
                   </div>
@@ -246,7 +268,8 @@ export function EducationSection() {
                 </div>
                 <div className="hidden sm:block w-px h-4 bg-border"></div>
                 <span className="text-sm text-muted-foreground">
-                  Combining academic excellence with practical industry experience
+                  Combining academic excellence with practical industry
+                  experience
                 </span>
               </div>
             </ColorReactiveCard>
