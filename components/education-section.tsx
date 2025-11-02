@@ -102,7 +102,7 @@ export function EducationSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const timelineProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -135,7 +135,9 @@ export function EducationSection() {
               </ColorReactiveText>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
-              A chronological path through my educational milestones, from foundational IT knowledge to advanced software engineering expertise.
+              A chronological path through my educational milestones, from
+              foundational IT knowledge to advanced software engineering
+              expertise.
             </p>
           </motion.div>
 
@@ -143,40 +145,32 @@ export function EducationSection() {
           <div className="relative">
             {/* Main Timeline Line */}
             <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-linear-to-b from-primary/20 via-primary/40 to-primary/20 hidden md:block"></div>
-            
+
             {/* Dynamic Progress Line */}
-            <motion.div 
+            <motion.div
               className="absolute left-6 top-8 w-0.5 bg-linear-to-b from-accent to-primary hidden md:block origin-top"
-              style={{ 
+              style={{
                 scaleY: useTransform(scrollYProgress, [0.1, 0.9], [0, 1]),
-                height: "calc(100% - 4rem)"
+                height: "calc(100% - 4rem)",
               }}
             />
-            
+
             {/* Date Timeline Line - Left Side */}
             <div className="absolute left-0 top-0 bottom-0 w-24 hidden lg:block">
               <div className="sticky top-24 space-y-4">
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   className="text-xs font-medium text-accent/80 mb-4 px-2 py-1 rounded bg-accent/10"
                 >
-                  📅 Timeline
+                  Timeline
                 </motion.div>
                 <div className="relative">
                   <div className="absolute left-4 top-0 bottom-0 w-px bg-linear-to-b from-accent/30 via-accent/60 to-accent/30"></div>
-                  
-                  {/* Progress Indicator */}
-                  <motion.div 
-                    className="absolute left-3.5 w-1.5 h-1.5 rounded-full bg-accent shadow-lg shadow-accent/50"
-                    style={{ 
-                      top: useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"])
-                    }}
-                  />
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-8 md:space-y-12 lg:ml-32">
               {educationData.map((education, index) => (
                 <motion.div
@@ -216,17 +210,17 @@ export function EducationSection() {
                     transition={{ delay: 0.5 + index * 0.15 }}
                     className="absolute -left-32 top-8 hidden lg:block"
                   >
-                    <motion.div 
+                    <motion.div
                       className="text-right space-y-1 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-accent/20"
                       whileHover={{ scale: 1.05, x: -5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <div className="text-lg font-bold text-accent">
-                        {education.period.split(' – ')[0]} {/* Start period */}
+                        {education.period.split(" – ")[0]} {/* Start period */}
                       </div>
                       <div className="text-xs text-muted-foreground">to</div>
                       <div className="text-lg font-bold text-accent">
-                        {education.period.split(' – ')[1]} {/* End period */}
+                        {education.period.split(" – ")[1]} {/* End period */}
                       </div>
                       <div className="flex items-center justify-end gap-1 mt-2">
                         <div className="w-4 h-px bg-accent/50"></div>
@@ -239,17 +233,17 @@ export function EducationSection() {
                   <motion.div
                     className="absolute left-0 top-8 w-12 h-12 rounded-full bg-linear-to-br from-accent/20 to-primary/20 border-2 border-accent/40 hidden md:flex items-center justify-center z-10"
                     whileHover={{ scale: 1.1 }}
-                    whileInView={{ 
+                    whileInView={{
                       boxShadow: "0 0 20px rgba(var(--accent), 0.3)",
-                      borderColor: "rgba(var(--accent), 0.6)"
+                      borderColor: "rgba(var(--accent), 0.6)",
                     }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="w-6 h-6 rounded-full bg-accent/80"
                       whileHover={{ scale: 1.2 }}
-                      whileInView={{ 
-                        boxShadow: "0 0 10px rgba(var(--accent), 0.5)" 
+                      whileInView={{
+                        boxShadow: "0 0 10px rgba(var(--accent), 0.5)",
                       }}
                     />
                   </motion.div>
@@ -299,7 +293,9 @@ export function EducationSection() {
                                 </div>
                                 <div className="flex items-center gap-2 lg:hidden">
                                   <Calendar className="w-4 h-4" />
-                                  <span className="text-sm">{education.period}</span>
+                                  <span className="text-sm">
+                                    {education.period}
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -329,22 +325,27 @@ export function EducationSection() {
                             </ColorReactiveText>
                           </h5>
                           <div className="flex flex-wrap gap-2">
-                            {education.highlights.map((highlight, highlightIndex) => (
-                              <motion.span
-                                key={highlight}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{
-                                  duration: 0.3,
-                                  delay: 0.5 + index * 0.15 + highlightIndex * 0.05,
-                                }}
-                                whileHover={{ scale: 1.05 }}
-                                className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors cursor-default"
-                              >
-                                {highlight}
-                              </motion.span>
-                            ))}
+                            {education.highlights.map(
+                              (highlight, highlightIndex) => (
+                                <motion.span
+                                  key={highlight}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  whileInView={{ opacity: 1, scale: 1 }}
+                                  viewport={{ once: true }}
+                                  transition={{
+                                    duration: 0.3,
+                                    delay:
+                                      0.5 +
+                                      index * 0.15 +
+                                      highlightIndex * 0.05,
+                                  }}
+                                  whileHover={{ scale: 1.05 }}
+                                  className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors cursor-default"
+                                >
+                                  {highlight}
+                                </motion.span>
+                              )
+                            )}
                           </div>
                         </div>
                       </div>
@@ -373,7 +374,8 @@ export function EducationSection() {
                 </div>
                 <div className="hidden sm:block w-px h-4 bg-border"></div>
                 <span className="text-sm text-muted-foreground">
-                  From foundational IT knowledge to advanced software engineering expertise
+                  From foundational IT knowledge to advanced software
+                  engineering expertise
                 </span>
               </div>
             </ColorReactiveCard>
