@@ -7,17 +7,13 @@ import { VolunteerSection } from "@/components/volunteer-section";
 import { ContactSection } from "@/components/contact-section";
 import { Navigation } from "@/components/navigation";
 import { DynamicBackground } from "@/components/dynamic-background";
-import {
-  AnimatedBackground,
-  AnimatedShapes,
-} from "@/components/animated-shapes";
 import { CustomCursor } from "@/components/custom-cursor";
+import { ParallaxBackground } from "@/components/parallax-background";
 
 export default function Home() {
   return (
     <main className="min-h-screen relative mobile-safe">
-      <AnimatedBackground />
-      <AnimatedShapes />
+      <ParallaxBackground />
       <DynamicBackground />
       <CustomCursor />
       <Navigation />
