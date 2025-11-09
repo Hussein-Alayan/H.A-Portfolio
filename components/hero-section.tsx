@@ -42,7 +42,7 @@ export function HeroSection() {
             <ColorReactiveText variant="gradient">
               <TypingAnimation
                 text="Full-Stack Software Engineer"
-                delay={0}
+                delay={200} // Match parent motion.h1 transition delay (0.2s = 200ms)
                 speed={36}
               />
             </ColorReactiveText>
