@@ -3,36 +3,38 @@
 import { motion } from "framer-motion"
 import { Heart } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ColorReactiveText } from "./color-reactive-components"
+import { SectionHeader } from "./section-progress";
+import { VisualBreak, ContentBlock } from "./typography-system";
 
 export function VolunteerSection() {
   return (
-    <section id="volunteer" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+    <section id="volunteer" className="py-32 px-4 sm:px-6 lg:px-8 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-24"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl font-bold"
-          >
-            Volunteer Work
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="transition-all"
-          >
-            <Card className="border-border bg-card/50 backdrop-blur">
+          <SectionHeader 
+            number="06" 
+            title={<ColorReactiveText variant="gradient">Volunteer Work</ColorReactiveText>}
+            subtitle="Giving back to the community through meaningful volunteer experiences."
+          />
+
+          <VisualBreak type="wave" />
+          <ContentBlock>
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="transition-all"
+            >
+              <Card className="border-border bg-card/50 backdrop-blur">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <motion.div
@@ -63,6 +65,7 @@ export function VolunteerSection() {
               </CardContent>
             </Card>
           </motion.div>
+          </ContentBlock>
         </motion.div>
       </div>
     </section>

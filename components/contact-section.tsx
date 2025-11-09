@@ -51,44 +51,31 @@ const quickLinks = [
 
 const techStack = ["Next.js", "React", "TypeScript", "Python", "AI/ML"];
 
+import { SectionHeader } from "./section-progress";
+import { VisualBreak, ContentBlock } from "./typography-system";
+
 export function ContactSection() {
   return (
-    <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl w-full">
+    <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="container mx-auto max-w-6xl w-full overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-20"
+          className="space-y-32"
         >
           {/* Contact Header */}
-          <div className="text-center space-y-6">
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold"
-            >
-              <ColorReactiveText variant="gradient">
-                Let's Connect
-              </ColorReactiveText>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed"
-            >
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
-            </motion.p>
-          </div>
+          <SectionHeader 
+            number="07" 
+            title={<ColorReactiveText variant="gradient">Let's Connect</ColorReactiveText>}
+            subtitle="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+          />
+
+          <VisualBreak type="wave" />
 
           {/* Contact Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto overflow-hidden">
             {contactInfo.map((item, index) => (
               <motion.div
                 key={item.label}
@@ -183,15 +170,17 @@ export function ContactSection() {
                   transition={{ duration: 0.6, delay: 1 }}
                   className="space-y-8"
                 >
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
-                    <ColorReactiveText variant="gradient">
-                      Hussein Alayan
-                    </ColorReactiveText>
-                  </h3>
-                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-md mx-auto md:max-w-none md:mx-0">
-                    Full-Stack Developer passionate about creating intelligent
-                    solutions with modern web technologies and AI.
-                  </p>
+                  <ContentBlock>
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                      <ColorReactiveText variant="gradient">
+                        Hussein Alayan
+                      </ColorReactiveText>
+                    </h3>
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-md mx-auto md:max-w-none md:mx-0">
+                      Full-Stack Developer passionate about creating intelligent
+                      solutions with modern web technologies and AI.
+                    </p>
+                  </ContentBlock>
                   <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 text-base sm:text-lg text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <span>Made with</span>

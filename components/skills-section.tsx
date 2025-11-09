@@ -23,7 +23,7 @@ const skills = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, x: -80 }}

@@ -17,6 +17,10 @@ function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: strin
   )
 }
 
+import { ColorReactiveText, ColorReactiveCard } from "./color-reactive-components"
+import { SectionHeader } from "./section-progress"
+import { VisualBreak, ContentBlock } from "./typography-system"
+
 export function AboutSection() {
   const stats = [
     { icon: Code2, label: "Technologies", value: 15, suffix: "+" },
@@ -53,31 +57,27 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-20"
         >
-          <motion.h2
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl font-bold text-center"
-          >
-            About Me
-          </motion.h2>
+          <SectionHeader 
+            number="02" 
+            title={<ColorReactiveText variant="gradient">About Me</ColorReactiveText>}
+            subtitle="Passionate about creating intelligent solutions that make a difference"
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 overflow-hidden"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -112,7 +112,7 @@ export function AboutSection() {
                 className="group"
               >
                 <div
-                  className={`relative bg-gradient-to-br ${highlight.gradient} border border-border rounded-xl p-6 space-y-4 h-full hover:border-primary/50 transition-all`}
+                  className={`relative bg-linear-to-br ${highlight.gradient} border border-border rounded-xl p-6 space-y-4 h-full hover:border-primary/50 transition-all`}
                 >
                   <div
                     className={`w-12 h-12 rounded-lg bg-background/50 flex items-center justify-center ${highlight.iconColor} group-hover:scale-110 transition-transform`}

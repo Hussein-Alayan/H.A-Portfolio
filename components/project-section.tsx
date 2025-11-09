@@ -13,38 +13,37 @@ import {
   ColorReactiveText,
   ColorReactiveCard,
 } from "./color-reactive-components";
+import { SectionHeader } from "./section-progress";
+import { VisualBreak, ContentBlock } from "./typography-system";
 
 export function ProjectSection() {
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-24"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl font-bold"
-          >
-            <ColorReactiveText variant="gradient">
-              Featured Project
-            </ColorReactiveText>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="transition-all"
-          >
-            <ColorReactiveCard className="p-4 sm:p-6">
+          <SectionHeader 
+            number="05" 
+            title={<ColorReactiveText variant="gradient">Featured Projects</ColorReactiveText>}
+            subtitle="A selection of projects that showcase my technical skills and problem-solving approach."
+          />
+
+          <VisualBreak type="dots" />
+          <ContentBlock>
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="transition-all"
+            >
+              <ColorReactiveCard className="p-4 sm:p-6">
               <CardHeader className="px-0 pt-0">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                   <div className="space-y-2 flex-1">
@@ -150,6 +149,7 @@ export function ProjectSection() {
               </CardContent>
             </ColorReactiveCard>
           </motion.div>
+          </ContentBlock>
         </motion.div>
       </div>
     </section>
