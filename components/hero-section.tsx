@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full"
     >
       {/* Single subtle orb - responsive positioning */}
       <PulsatingOrb
@@ -25,7 +25,7 @@ export function HeroSection() {
         className="top-1/3 right-1/6 opacity-15 sm:hidden block"
       />
 
-      <div className="container mx-auto max-w-4xl relative z-10">
+      <div className="container mx-auto max-w-4xl relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,8 +42,8 @@ export function HeroSection() {
             <ColorReactiveText variant="gradient">
               <TypingAnimation
                 text="Full-Stack Software Engineer"
-                delay={500}
-                speed={15}
+                delay={0}
+                speed={36}
               />
             </ColorReactiveText>
           </motion.h1>

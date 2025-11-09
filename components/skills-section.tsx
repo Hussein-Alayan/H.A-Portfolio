@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const skills = [
   { name: "React", category: "Frontend" },
@@ -19,11 +19,14 @@ const skills = [
   { name: "n8n", category: "Automation" },
   { name: "OpenAI API", category: "AI" },
   { name: "Gemini", category: "AI" },
-]
+];
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+    <section
+      id="skills"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/30 overflow-hidden"
+    >
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, x: -80 }}
@@ -63,5 +66,5 @@ export function SkillsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

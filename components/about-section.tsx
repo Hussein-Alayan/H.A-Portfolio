@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Code2, Sparkles, Heart, GraduationCap } from "lucide-react"
+import { motion } from "framer-motion";
+import { Code2, Sparkles, Heart, GraduationCap } from "lucide-react";
 
-function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+function AnimatedCounter({
+  value,
+  suffix = "",
+}: {
+  value: number;
+  suffix?: string;
+}) {
   return (
     <motion.span
       initial={{ opacity: 0, scale: 0.5 }}
@@ -14,8 +20,15 @@ function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: strin
       {value}
       {suffix}
     </motion.span>
-  )
+  );
 }
+
+import {
+  ColorReactiveText,
+  ColorReactiveCard,
+} from "./color-reactive-components";
+import { SectionHeader } from "./section-progress";
+import { VisualBreak, ContentBlock } from "./typography-system";
 
 export function AboutSection() {
   const stats = [
@@ -23,7 +36,7 @@ export function AboutSection() {
     { icon: Sparkles, label: "AI Projects", value: 5, suffix: "+" },
     { icon: Heart, label: "Red Cross", value: 2, suffix: " yrs" },
     { icon: GraduationCap, label: "Certifications", value: 3, suffix: "" },
-  ]
+  ];
 
   const highlights = [
     {
@@ -50,34 +63,32 @@ export function AboutSection() {
       gradient: "from-red-500/10 to-orange-500/10",
       iconColor: "text-red-400",
     },
-  ]
+  ];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-20"
         >
-          <motion.h2
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl font-bold text-center"
-          >
-            About Me
-          </motion.h2>
+          <SectionHeader
+            number="02"
+            title={
+              <ColorReactiveText variant="gradient">About Me</ColorReactiveText>
+            }
+            subtitle="Passionate about creating intelligent solutions that make a difference"
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 overflow-hidden"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -94,7 +105,9 @@ export function AboutSection() {
                   <div className="text-3xl font-bold text-foreground">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -112,15 +125,19 @@ export function AboutSection() {
                 className="group"
               >
                 <div
-                  className={`relative bg-gradient-to-br ${highlight.gradient} border border-border rounded-xl p-6 space-y-4 h-full hover:border-primary/50 transition-all`}
+                  className={`relative bg-linear-to-br ${highlight.gradient} border border-border rounded-xl p-6 space-y-4 h-full hover:border-primary/50 transition-all`}
                 >
                   <div
                     className={`w-12 h-12 rounded-lg bg-background/50 flex items-center justify-center ${highlight.iconColor} group-hover:scale-110 transition-transform`}
                   >
                     <highlight.icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">{highlight.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{highlight.description}</p>
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {highlight.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {highlight.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -134,13 +151,18 @@ export function AboutSection() {
             className="text-center max-w-3xl mx-auto"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a <span className="text-foreground font-semibold">full-stack developer from Lebanon</span> passionate
-              about building intelligent, user-centric web applications. I combine modern web technologies with AI
-              capabilities to create solutions that make a real difference in people's workflows and lives.
+              I'm a{" "}
+              <span className="text-foreground font-semibold">
+                full-stack developer from Lebanon
+              </span>{" "}
+              passionate about building intelligent, user-centric web
+              applications. I combine modern web technologies with AI
+              capabilities to create solutions that make a real difference in
+              people's workflows and lives.
             </p>
           </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

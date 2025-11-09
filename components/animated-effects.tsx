@@ -35,7 +35,7 @@ export function AnimatedBorder({
       />
 
       {/* Content container */}
-      <div className="relative bg-background rounded-lg p-[2px]">
+      <div className="relative bg-background rounded-lg p-0.5">
         <div className="bg-background rounded-lg p-6">{children}</div>
       </div>
     </div>
@@ -48,7 +48,7 @@ export function ColorWave() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       <motion.div
-        className="absolute w-[200%] h-[200%] -top-1/2 -left-1/2"
+        className="absolute w-full h-full top-0 left-0 hidden sm:block"
         style={{
           background: `radial-gradient(circle at center, ${currentTheme.primary}20, transparent 50%)`,
         }}
@@ -64,7 +64,7 @@ export function ColorWave() {
       />
 
       <motion.div
-        className="absolute w-[150%] h-[150%] -top-1/4 -left-1/4"
+        className="absolute w-full h-full top-0 left-0 hidden sm:block"
         style={{
           background: `radial-gradient(circle at center, ${currentTheme.secondary}15, transparent 60%)`,
         }}
