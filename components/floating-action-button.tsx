@@ -36,7 +36,9 @@ export function FloatingActionButton() {
     if (action.id === "top") {
       scrollToTop();
     } else {
-      document.getElementById(action.id)?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById(action.id)
+        ?.scrollIntoView({ behavior: "smooth" });
     }
     setActiveAction(null);
   };

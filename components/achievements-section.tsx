@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Check, Star, Quote } from "lucide-react";
-import { ColorReactiveText, ColorReactiveCard } from "./color-reactive-components";
+import {
+  ColorReactiveText,
+  ColorReactiveCard,
+} from "./color-reactive-components";
 
 const achievements = [
   {
@@ -30,13 +33,15 @@ const achievements = [
 
 const testimonials = [
   {
-    quote: "Hussein delivered exceptional work on our web application. His attention to detail and technical skills are outstanding.",
+    quote:
+      "Hussein delivered exceptional work on our web application. His attention to detail and technical skills are outstanding.",
     author: "Project Client",
     role: "Tech Startup Founder",
     rating: 5,
   },
   {
-    quote: "Professional, reliable, and innovative. Hussein brought our ideas to life with modern web technologies.",
+    quote:
+      "Professional, reliable, and innovative. Hussein brought our ideas to life with modern web technologies.",
     author: "Development Partner",
     role: "Senior Developer",
     rating: 5,
@@ -57,7 +62,9 @@ export function AchievementsSection() {
           {/* Achievements */}
           <div>
             <h3 className="text-2xl font-bold mb-8 text-center">
-              <ColorReactiveText variant="gradient">Key Achievements</ColorReactiveText>
+              <ColorReactiveText variant="gradient">
+                Key Achievements
+              </ColorReactiveText>
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {achievements.map((achievement, index) => (
@@ -72,7 +79,9 @@ export function AchievementsSection() {
                   <ColorReactiveCard className="p-6 h-full">
                     <div className="flex items-start gap-4">
                       <div className="shrink-0">
-                        <achievement.icon className={`w-6 h-6 ${achievement.color}`} />
+                        <achievement.icon
+                          className={`w-6 h-6 ${achievement.color}`}
+                        />
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
@@ -99,7 +108,9 @@ export function AchievementsSection() {
           {/* Testimonials */}
           <div>
             <h3 className="text-2xl font-bold mb-8 text-center">
-              <ColorReactiveText variant="gradient">Client Feedback</ColorReactiveText>
+              <ColorReactiveText variant="gradient">
+                Client Feedback
+              </ColorReactiveText>
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
@@ -115,7 +126,10 @@ export function AchievementsSection() {
                     <div className="space-y-4">
                       <div className="flex gap-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <Star
+                            key={i}
+                            className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                          />
                         ))}
                       </div>
                       <p className="text-muted-foreground leading-relaxed italic">
@@ -127,7 +141,9 @@ export function AchievementsSection() {
                             {testimonial.author}
                           </ColorReactiveText>
                         </p>
-                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </ColorReactiveCard>

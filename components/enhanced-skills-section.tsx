@@ -1,17 +1,20 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { 
-  Code2, 
-  Palette, 
-  Server, 
-  Database, 
-  Smartphone, 
+import {
+  Code2,
+  Palette,
+  Server,
+  Database,
+  Smartphone,
   Brain,
   Globe,
-  GitBranch 
+  GitBranch,
 } from "lucide-react";
-import { ColorReactiveText, ColorReactiveCard } from "./color-reactive-components";
+import {
+  ColorReactiveText,
+  ColorReactiveCard,
+} from "./color-reactive-components";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const skillCategories = [
@@ -64,13 +67,16 @@ const skillCategories = [
 export function EnhancedSkillsSection() {
   const isMobile = useIsMobile();
   const shouldReduceMotion = useReducedMotion();
-  
+
   // Reduce animation complexity on mobile
   const animationDuration = isMobile ? 0.3 : 0.6;
   const staggerDelay = isMobile ? 0.05 : 0.1;
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/20 overflow-hidden">
+    <section
+      id="skills"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary/20 overflow-hidden"
+    >
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 40 }}
@@ -86,7 +92,9 @@ export function EnhancedSkillsSection() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold"
             >
-              <ColorReactiveText variant="gradient">Technical Skills</ColorReactiveText>
+              <ColorReactiveText variant="gradient">
+                Technical Skills
+              </ColorReactiveText>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -106,13 +114,18 @@ export function EnhancedSkillsSection() {
                 initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: categoryIndex * staggerDelay, duration: animationDuration }}
+                transition={{
+                  delay: categoryIndex * staggerDelay,
+                  duration: animationDuration,
+                }}
               >
                 <ColorReactiveCard className="p-6 h-full">
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-secondary/50">
-                        <category.icon className={`w-6 h-6 ${category.color}`} />
+                        <category.icon
+                          className={`w-6 h-6 ${category.color}`}
+                        />
                       </div>
                       <h3 className="text-xl font-semibold">
                         <ColorReactiveText variant="solid">
@@ -137,10 +150,10 @@ export function EnhancedSkillsSection() {
                               initial={{ width: 0 }}
                               whileInView={{ width: `${skill.level}%` }}
                               viewport={{ once: true }}
-                              transition={{ 
+                              transition={{
                                 delay: categoryIndex * 0.1 + skillIndex * 0.1,
                                 duration: 0.8,
-                                ease: "easeOut"
+                                ease: "easeOut",
                               }}
                               className="h-full bg-linear-to-r from-primary to-accent rounded-full"
                             />
@@ -162,12 +175,22 @@ export function EnhancedSkillsSection() {
             className="text-center"
           >
             <h3 className="text-xl font-semibold mb-6">
-              <ColorReactiveText variant="accent">Also Working With</ColorReactiveText>
+              <ColorReactiveText variant="accent">
+                Also Working With
+              </ColorReactiveText>
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
               {[
-                "Firebase", "MongoDB", "Redis", "GraphQL", "Stripe API", 
-                "JWT Auth", "WebSockets", "PWA", "Electron", "Vue.js"
+                "Firebase",
+                "MongoDB",
+                "Redis",
+                "GraphQL",
+                "Stripe API",
+                "JWT Auth",
+                "WebSockets",
+                "PWA",
+                "Electron",
+                "Vue.js",
               ].map((tech, index) => (
                 <motion.span
                   key={tech}

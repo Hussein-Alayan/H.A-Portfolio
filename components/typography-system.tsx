@@ -10,24 +10,24 @@ interface ContentBlockProps {
   maxWidth?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
-export function ContentBlock({ 
-  children, 
+export function ContentBlock({
+  children,
   className = "",
   spacing = "normal",
-  maxWidth = "lg"
+  maxWidth = "lg",
 }: ContentBlockProps) {
   const spacingClasses = {
     tight: "space-y-4",
     normal: "space-y-6",
-    loose: "space-y-8"
+    loose: "space-y-8",
   };
 
   const maxWidthClasses = {
     sm: "max-w-sm",
-    md: "max-w-md", 
+    md: "max-w-md",
     lg: "max-w-2xl",
     xl: "max-w-4xl",
-    full: "max-w-full"
+    full: "max-w-full",
   };
 
   return (
@@ -48,7 +48,10 @@ interface VisualBreakProps {
   className?: string;
 }
 
-export function VisualBreak({ type = "minimal", className = "" }: VisualBreakProps) {
+export function VisualBreak({
+  type = "minimal",
+  className = "",
+}: VisualBreakProps) {
   const variants = {
     line: (
       <motion.div
@@ -103,7 +106,7 @@ export function VisualBreak({ type = "minimal", className = "" }: VisualBreakPro
         transition={{ duration: 0.6 }}
         className="w-8 h-8"
       />
-    )
+    ),
   };
 
   return (
@@ -120,11 +123,11 @@ interface TypographyScaleProps {
   gradient?: boolean;
 }
 
-export function TypographyScale({ 
-  variant, 
-  children, 
+export function TypographyScale({
+  variant,
+  children,
   className = "",
-  gradient = false 
+  gradient = false,
 }: TypographyScaleProps) {
   const variants = {
     hero: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight",
@@ -132,15 +135,22 @@ export function TypographyScale({
     subsection: "text-2xl sm:text-3xl font-semibold tracking-tight",
     body: "text-base sm:text-lg leading-relaxed",
     small: "text-sm sm:text-base",
-    caption: "text-xs sm:text-sm text-muted-foreground"
+    caption: "text-xs sm:text-sm text-muted-foreground",
   };
 
-  const Component = variant === "hero" ? "h1" : 
-                   variant === "section" ? "h2" : 
-                   variant === "subsection" ? "h3" : "p";
+  const Component =
+    variant === "hero"
+      ? "h1"
+      : variant === "section"
+      ? "h2"
+      : variant === "subsection"
+      ? "h3"
+      : "p";
 
   const baseClasses = variants[variant];
-  const gradientClasses = gradient ? "bg-linear-to-r from-primary to-accent bg-clip-text text-transparent" : "";
+  const gradientClasses = gradient
+    ? "bg-linear-to-r from-primary to-accent bg-clip-text text-transparent"
+    : "";
 
   return (
     <Component className={`${baseClasses} ${gradientClasses} ${className}`}>
@@ -149,11 +159,18 @@ export function TypographyScale({
   );
 }
 
-export function ReadingFlow({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function ReadingFlow({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <div className={`prose prose-lg dark:prose-invert max-w-none ${className}`}>
       <style jsx>{`
-        .prose h2, .prose h3 {
+        .prose h2,
+        .prose h3 {
           scroll-margin-top: 6rem;
         }
         .prose p {

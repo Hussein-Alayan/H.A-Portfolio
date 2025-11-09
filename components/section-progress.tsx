@@ -20,7 +20,8 @@ export function SectionProgressIndicator() {
   useEffect(() => {
     const handleScroll = () => {
       // Calculate overall scroll progress
-      const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const totalScrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.pageYOffset;
       const progress = (currentScroll / totalScrollHeight) * 100;
       setScrollProgress(Math.min(progress, 100));
@@ -34,7 +35,7 @@ export function SectionProgressIndicator() {
         }
         return false;
       });
-      
+
       if (current) {
         setActiveSection(current.id);
       }
@@ -42,7 +43,7 @@ export function SectionProgressIndicator() {
 
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial call
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -53,9 +54,9 @@ export function SectionProgressIndicator() {
         <div className="relative w-px h-64 bg-border">
           <motion.div
             className="absolute top-0 left-0 w-full bg-primary origin-top"
-            style={{ 
+            style={{
               height: `${scrollProgress}%`,
-              scaleY: scrollProgress / 100
+              scaleY: scrollProgress / 100,
             }}
             transition={{ duration: 0.1 }}
           />
@@ -67,25 +68,27 @@ export function SectionProgressIndicator() {
             <motion.button
               key={section.id}
               onClick={() => {
-                document.getElementById(section.id)?.scrollIntoView({ 
-                  behavior: "smooth" 
+                document.getElementById(section.id)?.scrollIntoView({
+                  behavior: "smooth",
                 });
               }}
               className={`group relative flex items-center transition-all duration-300 ${
-                activeSection === section.id 
-                  ? "text-primary" 
+                activeSection === section.id
+                  ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               {/* Section Number Dot */}
-              <div className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-                activeSection === section.id 
-                  ? "bg-primary border-primary shadow-lg shadow-primary/50" 
-                  : "border-muted-foreground group-hover:border-foreground"
-              }`} />
-              
+              <div
+                className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+                  activeSection === section.id
+                    ? "bg-primary border-primary shadow-lg shadow-primary/50"
+                    : "border-muted-foreground group-hover:border-foreground"
+                }`}
+              />
+
               {/* Section Label */}
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
@@ -95,9 +98,7 @@ export function SectionProgressIndicator() {
                 <span className="text-xs font-mono font-bold">
                   {section.label}
                 </span>
-                <span className="text-sm font-medium">
-                  {section.name}
-                </span>
+                <span className="text-sm font-medium">{section.name}</span>
               </motion.div>
             </motion.button>
           ))}
@@ -107,11 +108,11 @@ export function SectionProgressIndicator() {
   );
 }
 
-export function SectionHeader({ 
-  number, 
-  title, 
-  subtitle, 
-  className = "" 
+export function SectionHeader({
+  number,
+  title,
+  subtitle,
+  className = "",
 }: {
   number: string;
   title: React.ReactNode;

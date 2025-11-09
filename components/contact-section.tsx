@@ -56,7 +56,10 @@ import { VisualBreak, ContentBlock } from "./typography-system";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="contact"
+      className="py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       <div className="container mx-auto max-w-6xl w-full overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 80 }}
@@ -66,9 +69,13 @@ export function ContactSection() {
           className="space-y-32"
         >
           {/* Contact Header */}
-          <SectionHeader 
-            number="07" 
-            title={<ColorReactiveText variant="gradient">Let's Connect</ColorReactiveText>}
+          <SectionHeader
+            number="07"
+            title={
+              <ColorReactiveText variant="gradient">
+                Let's Connect
+              </ColorReactiveText>
+            }
             subtitle="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
           />
 

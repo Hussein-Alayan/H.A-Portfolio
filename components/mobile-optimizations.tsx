@@ -6,8 +6,8 @@ import { useEffect } from "react";
 export function MobileOptimizations() {
   useEffect(() => {
     // Disable hover effects on touch devices
-    if ('ontouchstart' in window) {
-      document.body.classList.add('touch-device');
+    if ("ontouchstart" in window) {
+      document.body.classList.add("touch-device");
     }
 
     // Optimize scroll performance
@@ -25,7 +25,7 @@ export function MobileOptimizations() {
     }
 
     // Throttle scroll events for better performance
-    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
 
     // Improve touch performance
     let touchStartY = 0;
@@ -43,20 +43,25 @@ export function MobileOptimizations() {
       const touchDuration = Date.now() - touchStartTime;
 
       // Allow natural scrolling but prevent bouncing on boundaries
-      if ((touchDelta > 0 && window.pageYOffset === 0) ||
-          (touchDelta < 0 && window.pageYOffset >= document.body.scrollHeight - window.innerHeight)) {
+      if (
+        (touchDelta > 0 && window.pageYOffset === 0) ||
+        (touchDelta < 0 &&
+          window.pageYOffset >= document.body.scrollHeight - window.innerHeight)
+      ) {
         e.preventDefault();
       }
     }
 
     // Add touch event listeners with passive options for better performance
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      window.removeEventListener('scroll', requestScrollUpdate);
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener("scroll", requestScrollUpdate);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 

@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import { useRef, useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -8,7 +13,7 @@ export function ParallaxBackground() {
   const ref = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const shouldReduceMotion = useReducedMotion();
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -19,18 +24,62 @@ export function ParallaxBackground() {
   const motionMultiplier = shouldReduceMotion ? 0 : mobileMultiplier;
 
   // Different parallax speeds for layers (reduced on mobile)
-  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", `${50 * motionMultiplier}%`]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", `${-30 * motionMultiplier}%`]);
-  const y3 = useTransform(scrollYProgress, [0, 1], ["0%", `${80 * motionMultiplier}%`]);
-  const y4 = useTransform(scrollYProgress, [0, 1], ["0%", `${-60 * motionMultiplier}%`]);
-  const y5 = useTransform(scrollYProgress, [0, 1], ["0%", `${40 * motionMultiplier}%`]);
-  const y6 = useTransform(scrollYProgress, [0, 1], ["0%", `${-20 * motionMultiplier}%`]);
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${50 * motionMultiplier}%`]
+  );
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${-30 * motionMultiplier}%`]
+  );
+  const y3 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${80 * motionMultiplier}%`]
+  );
+  const y4 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${-60 * motionMultiplier}%`]
+  );
+  const y5 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${40 * motionMultiplier}%`]
+  );
+  const y6 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `${-20 * motionMultiplier}%`]
+  );
 
   // Rotation and scale transforms (disabled on mobile)
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 45 * motionMultiplier]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -30 * motionMultiplier]);
-  const scale1 = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1 + (0.2 * motionMultiplier), 1 - (0.2 * motionMultiplier)]);
-  const scale2 = useTransform(scrollYProgress, [0, 0.5, 1], [1 - (0.2 * motionMultiplier), 1 + (0.1 * motionMultiplier), 1 + (0.3 * motionMultiplier)]);
+  const rotate1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 45 * motionMultiplier]
+  );
+  const rotate2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -30 * motionMultiplier]
+  );
+  const scale1 = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [1, 1 + 0.2 * motionMultiplier, 1 - 0.2 * motionMultiplier]
+  );
+  const scale2 = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [
+      1 - 0.2 * motionMultiplier,
+      1 + 0.1 * motionMultiplier,
+      1 + 0.3 * motionMultiplier,
+    ]
+  );
 
   return (
     <div

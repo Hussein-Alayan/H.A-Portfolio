@@ -4,10 +4,10 @@ import { useEffect } from "react";
 
 export function ResponsiveDebugger() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return;
+    if (process.env.NODE_ENV !== "development") return;
 
     function checkForOverflow() {
-      const elements = document.querySelectorAll('*');
+      const elements = document.querySelectorAll("*");
       const overflowElements: Element[] = [];
 
       elements.forEach((element) => {
@@ -17,12 +17,17 @@ export function ResponsiveDebugger() {
       });
 
       if (overflowElements.length > 0 && window.innerWidth < 768) {
-        console.group('🚨 Elements causing horizontal overflow on mobile:');
+        console.group("🚨 Elements causing horizontal overflow on mobile:");
         overflowElements.forEach((element, index) => {
           console.log(`${index + 1}.`, element);
-          console.log('   ScrollWidth:', element.scrollWidth, 'ClientWidth:', element.clientWidth);
-          console.log('   Classes:', element.className);
-          console.log('   Computed styles:', {
+          console.log(
+            "   ScrollWidth:",
+            element.scrollWidth,
+            "ClientWidth:",
+            element.clientWidth
+          );
+          console.log("   Classes:", element.className);
+          console.log("   Computed styles:", {
             width: window.getComputedStyle(element).width,
             maxWidth: window.getComputedStyle(element).maxWidth,
             minWidth: window.getComputedStyle(element).minWidth,
@@ -36,22 +41,22 @@ export function ResponsiveDebugger() {
 
     // Check on load and resize
     checkForOverflow();
-    window.addEventListener('resize', checkForOverflow);
-    
+    window.addEventListener("resize", checkForOverflow);
+
     // Also check after DOM changes
     const observer = new MutationObserver(() => {
       setTimeout(checkForOverflow, 100);
     });
-    
+
     observer.observe(document.body, {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class', 'style']
+      attributeFilter: ["class", "style"],
     });
 
     return () => {
-      window.removeEventListener('resize', checkForOverflow);
+      window.removeEventListener("resize", checkForOverflow);
       observer.disconnect();
     };
   }, []);
@@ -61,9 +66,9 @@ export function ResponsiveDebugger() {
 
 // Utility function to add visual overflow indicators (only in development)
 export function addOverflowIndicators() {
-  if (process.env.NODE_ENV !== 'development') return;
+  if (process.env.NODE_ENV !== "development") return;
 
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = `
     @media (max-width: 768px) {
       * {

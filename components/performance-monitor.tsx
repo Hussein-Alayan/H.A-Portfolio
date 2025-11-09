@@ -14,47 +14,53 @@ interface PerformanceMetrics {
 
 export function PerformanceMonitor() {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const measurePerformance = () => {
       const metrics: Partial<PerformanceMetrics> = {};
 
       // Basic timing metrics
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      const navigation = performance.getEntriesByType(
+        "navigation"
+      )[0] as PerformanceNavigationTiming;
       if (navigation) {
         metrics.loadTime = navigation.loadEventEnd - navigation.loadEventStart;
-        metrics.domContentLoaded = navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart;
+        metrics.domContentLoaded =
+          navigation.domContentLoadedEventEnd -
+          navigation.domContentLoadedEventStart;
       }
 
       // Paint metrics
-      const paintEntries = performance.getEntriesByType('paint');
+      const paintEntries = performance.getEntriesByType("paint");
       paintEntries.forEach((entry) => {
-        if (entry.name === 'first-paint') {
+        if (entry.name === "first-paint") {
           metrics.firstPaint = entry.startTime;
-        } else if (entry.name === 'first-contentful-paint') {
+        } else if (entry.name === "first-contentful-paint") {
           metrics.firstContentfulPaint = entry.startTime;
         }
       });
 
       // Web Vitals using PerformanceObserver
-      if (typeof PerformanceObserver !== 'undefined') {
+      if (typeof PerformanceObserver !== "undefined") {
         // Largest Contentful Paint
         try {
           const lcpObserver = new PerformanceObserver((list) => {
             const entries = list.getEntries();
             const lastEntry = entries[entries.length - 1];
             metrics.largestContentfulPaint = lastEntry.startTime;
-            
+
             // Log performance metrics in development
-            if (process.env.NODE_ENV === 'development') {
-              console.log('🚀 Performance Metrics:', {
+            if (process.env.NODE_ENV === "development") {
+              console.log("🚀 Performance Metrics:", {
                 ...metrics,
-                device: window.innerWidth < 768 ? 'mobile' : 'desktop',
-                userAgent: navigator.userAgent.includes('Mobile') ? 'mobile' : 'desktop'
+                device: window.innerWidth < 768 ? "mobile" : "desktop",
+                userAgent: navigator.userAgent.includes("Mobile")
+                  ? "mobile"
+                  : "desktop",
               });
             }
           });
-          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+          lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] });
         } catch (e) {
           // PerformanceObserver not supported
         }
@@ -70,7 +76,7 @@ export function PerformanceMonitor() {
             }
             metrics.cumulativeLayoutShift = clsValue;
           });
-          clsObserver.observe({ entryTypes: ['layout-shift'] });
+          clsObserver.observe({ entryTypes: ["layout-shift"] });
         } catch (e) {
           // PerformanceObserver not supported
         }
@@ -79,10 +85,11 @@ export function PerformanceMonitor() {
         try {
           const fidObserver = new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-              metrics.firstInputDelay = (entry as any).processingStart - entry.startTime;
+              metrics.firstInputDelay =
+                (entry as any).processingStart - entry.startTime;
             }
           });
-          fidObserver.observe({ entryTypes: ['first-input'] });
+          fidObserver.observe({ entryTypes: ["first-input"] });
         } catch (e) {
           // PerformanceObserver not supported
         }
@@ -91,32 +98,39 @@ export function PerformanceMonitor() {
       // Report performance issues on mobile
       setTimeout(() => {
         const isMobile = window.innerWidth < 768;
-        if (isMobile && metrics.firstContentfulPaint && metrics.firstContentfulPaint > 2500) {
-          console.warn('🐌 Slow mobile performance detected:', metrics.firstContentfulPaint + 'ms FCP');
+        if (
+          isMobile &&
+          metrics.firstContentfulPaint &&
+          metrics.firstContentfulPaint > 2500
+        ) {
+          console.warn(
+            "🐌 Slow mobile performance detected:",
+            metrics.firstContentfulPaint + "ms FCP"
+          );
         }
       }, 3000);
     };
 
     // Measure performance after page load
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       measurePerformance();
     } else {
-      window.addEventListener('load', measurePerformance);
+      window.addEventListener("load", measurePerformance);
     }
 
     // Memory usage monitoring for mobile
     const monitorMemory = () => {
-      if ('memory' in performance) {
+      if ("memory" in performance) {
         const memory = (performance as any).memory;
         const memoryInfo = {
           used: Math.round(memory.usedJSHeapSize / 1048576),
           total: Math.round(memory.totalJSHeapSize / 1048576),
-          limit: Math.round(memory.jsHeapSizeLimit / 1048576)
+          limit: Math.round(memory.jsHeapSizeLimit / 1048576),
         };
 
         // Warn if memory usage is high on mobile
         if (window.innerWidth < 768 && memoryInfo.used > 50) {
-          console.warn('🧠 High memory usage on mobile:', memoryInfo);
+          console.warn("🧠 High memory usage on mobile:", memoryInfo);
         }
       }
     };
@@ -124,7 +138,7 @@ export function PerformanceMonitor() {
     const memoryInterval = setInterval(monitorMemory, 30000); // Check every 30 seconds
 
     return () => {
-      window.removeEventListener('load', measurePerformance);
+      window.removeEventListener("load", measurePerformance);
       clearInterval(memoryInterval);
     };
   }, []);
@@ -150,25 +164,26 @@ export const performanceUtils = {
       if (!inThrottle) {
         func(...args);
         inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+        setTimeout(() => (inThrottle = false), limit);
       }
     }) as T;
   },
 
   // Check if device supports hardware acceleration
   supportsHardwareAcceleration: (): boolean => {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     return !!gl;
   },
 
   // Estimate device performance tier
-  getDevicePerformanceTier: (): 'low' | 'medium' | 'high' => {
+  getDevicePerformanceTier: (): "low" | "medium" | "high" => {
     const hardwareConcurrency = navigator.hardwareConcurrency || 2;
     const memory = (navigator as any).deviceMemory || 2;
-    
-    if (hardwareConcurrency <= 2 && memory <= 2) return 'low';
-    if (hardwareConcurrency <= 4 && memory <= 4) return 'medium';
-    return 'high';
-  }
+
+    if (hardwareConcurrency <= 2 && memory <= 2) return "low";
+    if (hardwareConcurrency <= 4 && memory <= 4) return "medium";
+    return "high";
+  },
 };
