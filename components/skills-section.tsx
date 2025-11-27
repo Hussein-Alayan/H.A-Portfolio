@@ -29,11 +29,11 @@ export function SkillsSection() {
     >
       <div className="container mx-auto max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-24"
         >
           <motion.h2
             initial={{ opacity: 0, y: 30 }}

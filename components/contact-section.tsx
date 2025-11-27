@@ -62,7 +62,7 @@ export function ContactSection() {
     >
       <div className="container mx-auto max-w-6xl w-full overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
