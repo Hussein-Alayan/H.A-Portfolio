@@ -124,28 +124,41 @@
     @apply bg-background text-foreground;
   }
 
+  html,
+  body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    position: relative;
+  }
+
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
-  }
-  
-  body {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
   }
   
   /* Prevent horizontal scroll on all elements */
   * {
-    max-width: 100%;
     box-sizing: border-box;
+  }
+  
+  /* Force overflow hidden on main and sections */
+  main,
+  section,
+  div {
+    overflow-x: clip !important;
   }
   
   /* Container responsiveness */
   .container {
     width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+    max-width: 100%;
+  }
+  
+  /* Kill any potential overflow */
+  #__next,
+  [data-framer-motion] {
+    overflow-x: clip !important;
+    max-width: 100vw !important;
   }
 }
 
