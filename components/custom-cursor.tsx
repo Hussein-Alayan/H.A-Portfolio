@@ -23,36 +23,39 @@ export function CustomCursor() {
       if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    // Use event delegation to avoid memory leaks
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.matches("a, button, [role='button']") ||
+        target.closest("a, button, [role='button']")
+      ) {
+        setIsHovering(true);
+      }
+    };
+
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.matches("a, button, [role='button']") ||
+        target.closest("a, button, [role='button']")
+      ) {
+        setIsHovering(false);
+      }
+    };
 
     // Only add mouse tracking on non-mobile devices
     if (!isMobile) {
-      // Track mouse movement
       window.addEventListener("mousemove", updateMousePosition);
-
-      // Track hoverable elements
-      const hoverElements = document.querySelectorAll(
-        "a, button, [role='button']"
-      );
-      hoverElements.forEach((el) => {
-        el.addEventListener("mouseenter", handleMouseEnter);
-        el.addEventListener("mouseleave", handleMouseLeave);
-      });
+      document.addEventListener("mouseover", handleMouseOver);
+      document.addEventListener("mouseout", handleMouseOut);
     }
 
     return () => {
       window.removeEventListener("resize", checkMobile);
-      if (!isMobile) {
-        window.removeEventListener("mousemove", updateMousePosition);
-        const hoverElements = document.querySelectorAll(
-          "a, button, [role='button']"
-        );
-        hoverElements.forEach((el) => {
-          el.removeEventListener("mouseenter", handleMouseEnter);
-          el.removeEventListener("mouseleave", handleMouseLeave);
-        });
-      }
+      window.removeEventListener("mousemove", updateMousePosition);
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
     };
   }, [isVisible, isMobile]);
 

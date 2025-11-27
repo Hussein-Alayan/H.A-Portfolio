@@ -29,30 +29,27 @@ export function MobileOptimizations() {
 
     // Improve touch performance
     let touchStartY = 0;
-    let touchStartTime = 0;
 
     function handleTouchStart(e: TouchEvent) {
       touchStartY = e.touches[0].clientY;
-      touchStartTime = Date.now();
     }
 
     function handleTouchMove(e: TouchEvent) {
-      // Prevent default only for specific gestures to improve performance
       const touchCurrentY = e.touches[0].clientY;
       const touchDelta = touchCurrentY - touchStartY;
-      const touchDuration = Date.now() - touchStartTime;
 
       // Allow natural scrolling but prevent bouncing on boundaries
       if (
         (touchDelta > 0 && window.pageYOffset === 0) ||
         (touchDelta < 0 &&
-          window.pageYOffset >= document.body.scrollHeight - window.innerHeight)
+          window.pageYOffset >=
+            document.documentElement.scrollHeight - window.innerHeight)
       ) {
         e.preventDefault();
       }
     }
 
-    // Add touch event listeners with passive options for better performance
+    // Add touch event listeners with proper passive options
     document.addEventListener("touchstart", handleTouchStart, {
       passive: true,
     });

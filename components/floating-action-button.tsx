@@ -1,27 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp, Mail, User, FileText, Home } from "lucide-react";
+import { useScrollTracking } from "@/hooks/use-scroll-tracking";
+import type { LucideIcon } from "lucide-react";
+
+interface ActionItem {
+  id: string;
+  icon: LucideIcon;
+  label: string;
+  href: string;
+}
 
 export function FloatingActionButton() {
-  const [isVisible, setIsVisible] = useState(false);
+  const { isVisible } = useScrollTracking();
   const [activeAction, setActiveAction] = useState<string | null>(null);
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
-
-  const actions = [
+  const actions: ActionItem[] = [
     { id: "top", icon: ArrowUp, label: "Back to top", href: "#hero" },
     { id: "contact", icon: Mail, label: "Contact", href: "#contact" },
     { id: "about", icon: User, label: "About", href: "#about" },
@@ -32,7 +28,7 @@ export function FloatingActionButton() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleActionClick = (action: any) => {
+  const handleActionClick = (action: ActionItem) => {
     if (action.id === "top") {
       scrollToTop();
     } else {
@@ -63,6 +59,7 @@ export function FloatingActionButton() {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ delay: actions.indexOf(action) * 0.1 }}
                 onClick={() => handleActionClick(action)}
+                aria-label={action.label}
                 className="flex items-center gap-3 px-4 py-3 bg-card/90 backdrop-blur-sm border border-border rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
               >
                 <action.icon className="w-4 h-4 text-primary" />
@@ -82,6 +79,10 @@ export function FloatingActionButton() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setActiveAction(activeAction ? null : "menu")}
+        aria-label={
+          activeAction ? "Close navigation menu" : "Open navigation menu"
+        }
+        aria-expanded={!!activeAction}
         className="w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group"
       >
         <motion.div

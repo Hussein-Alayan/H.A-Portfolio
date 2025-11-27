@@ -22,30 +22,14 @@ import {
 } from "@/components/performance-monitor";
 import { ResponsiveDebugger } from "@/components/responsive-debugger";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Suspense, lazy, useEffect, useState } from "react";
-
-// Lazy load heavy components for mobile performance
-const LazyParallaxBackground = lazy(() =>
-  import("@/components/parallax-background").then((mod) => ({
-    default: mod.ParallaxBackground,
-  }))
-);
-const LazyDynamicBackground = lazy(() =>
-  import("@/components/dynamic-background").then((mod) => ({
-    default: mod.DynamicBackground,
-  }))
-);
-const LazyCustomCursor = lazy(() =>
-  import("@/components/custom-cursor").then((mod) => ({
-    default: mod.CustomCursor,
-  }))
-);
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const isMobile = useIsMobile();
   const [deviceTier, setDeviceTier] = useState<"low" | "medium" | "high">(
     "medium"
   );
+  const isDevelopment = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     setDeviceTier(performanceUtils.getDevicePerformanceTier());
@@ -56,20 +40,23 @@ export default function Home() {
 
   return (
     <main
-      className={`min-h-screen relative mobile-safe overflow-x-hidden w-full ${
+      className={`min-h-screen relative mobile-safe overflow-x-hidden w-full max-w-full ${
         isMobile ? "mobile-reduce-motion" : ""
       }`}
+      style={{ overflowX: "hidden" }}
     >
       <MobileOptimizations />
-      <PerformanceMonitor />
-      <ResponsiveDebugger />
+      {isDevelopment && (
+        <>
+          <PerformanceMonitor />
+          <ResponsiveDebugger />
+        </>
+      )}
 
       {/* Conditional rendering for performance-heavy components */}
-      <Suspense fallback={null}>
-        {!shouldUseMinimalMode && !isMobile && <LazyParallaxBackground />}
-        {!shouldUseMinimalMode && !isMobile && <LazyDynamicBackground />}
-        {!isMobile && <LazyCustomCursor />}
-      </Suspense>
+      {!shouldUseMinimalMode && !isMobile && <ParallaxBackground />}
+      {!shouldUseMinimalMode && !isMobile && <DynamicBackground />}
+      {!isMobile && <CustomCursor />}
 
       {/* Lightweight mobile background */}
       {isMobile && (

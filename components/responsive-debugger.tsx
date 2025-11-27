@@ -16,27 +16,7 @@ export function ResponsiveDebugger() {
         }
       });
 
-      if (overflowElements.length > 0 && window.innerWidth < 768) {
-        console.group("🚨 Elements causing horizontal overflow on mobile:");
-        overflowElements.forEach((element, index) => {
-          console.log(`${index + 1}.`, element);
-          console.log(
-            "   ScrollWidth:",
-            element.scrollWidth,
-            "ClientWidth:",
-            element.clientWidth
-          );
-          console.log("   Classes:", element.className);
-          console.log("   Computed styles:", {
-            width: window.getComputedStyle(element).width,
-            maxWidth: window.getComputedStyle(element).maxWidth,
-            minWidth: window.getComputedStyle(element).minWidth,
-            overflow: window.getComputedStyle(element).overflow,
-            overflowX: window.getComputedStyle(element).overflowX,
-          });
-        });
-        console.groupEnd();
-      }
+      // Debug logging removed - use browser DevTools for overflow detection
     }
 
     // Check on load and resize

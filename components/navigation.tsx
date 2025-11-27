@@ -1,41 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useScrollColor } from "./scroll-color-provider";
 import { ColorReactiveText } from "./color-reactive-components";
+import { useScrollTracking } from "@/hooks/use-scroll-tracking";
 
 export function Navigation() {
-  const [activeSection, setActiveSection] = useState("hero");
+  const { activeSection } = useScrollTracking();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currentTheme } = useScrollColor();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        "hero",
-        "about",
-        "skills",
-        "education",
-        "projects",
-        "volunteer",
-        "contact",
-      ];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { id: "hero", label: "Home" },
@@ -52,6 +27,7 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b"
+      aria-label="Main navigation"
       style={{
         background: `linear-gradient(135deg, ${currentTheme.background})`,
         borderColor: `${currentTheme.primary}30`,
@@ -109,6 +85,8 @@ export function Navigation() {
             transition={{ delay: 0.2 }}
             className="md:hidden p-2 rounded-lg transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
             style={{
               backgroundColor: `${currentTheme.primary}15`,
               color: currentTheme.primary,

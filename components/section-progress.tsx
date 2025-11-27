@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useScrollTracking } from "@/hooks/use-scroll-tracking";
 
 const sections = [
   { id: "hero", label: "01", name: "Hero" },
@@ -14,38 +14,7 @@ const sections = [
 ];
 
 export function SectionProgressIndicator() {
-  const [activeSection, setActiveSection] = useState("hero");
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Calculate overall scroll progress
-      const totalScrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.pageYOffset;
-      const progress = (currentScroll / totalScrollHeight) * 100;
-      setScrollProgress(Math.min(progress, 100));
-
-      // Find active section
-      const current = sections.find((section) => {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 200 && rect.bottom >= 200;
-        }
-        return false;
-      });
-
-      if (current) {
-        setActiveSection(current.id);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { activeSection, scrollProgress } = useScrollTracking();
 
   return (
     <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
@@ -55,8 +24,8 @@ export function SectionProgressIndicator() {
           <motion.div
             className="absolute top-0 left-0 w-full bg-primary origin-top"
             style={{
-              height: `${scrollProgress}%`,
-              scaleY: scrollProgress / 100,
+              height: `${scrollProgress * 100}%`,
+              scaleY: scrollProgress,
             }}
             transition={{ duration: 0.1 }}
           />
@@ -72,6 +41,8 @@ export function SectionProgressIndicator() {
                   behavior: "smooth",
                 });
               }}
+              aria-label={`Go to ${section.name} section`}
+              aria-current={activeSection === section.id ? "true" : "false"}
               className={`group relative flex items-center transition-all duration-300 ${
                 activeSection === section.id
                   ? "text-primary"

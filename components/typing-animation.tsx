@@ -23,14 +23,22 @@ export function TypingAnimation({
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    if (currentIndex < text.length) {
+    if (currentIndex === 0 && delay > 0) {
+      // Apply initial delay only once
+      const initialTimeout = setTimeout(() => {
+        setDisplayText(text[0]);
+        setCurrentIndex(1);
+      }, delay);
+      return () => clearTimeout(initialTimeout);
+    }
+
+    if (currentIndex > 0 && currentIndex < text.length) {
       const timeout = setTimeout(() => {
         setDisplayText((prev) => prev + text[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, delay + currentIndex * speed);
-
+      }, speed);
       return () => clearTimeout(timeout);
-    } else {
+    } else if (currentIndex >= text.length && currentIndex > 0) {
       setIsComplete(true);
     }
   }, [currentIndex, text, delay, speed]);
