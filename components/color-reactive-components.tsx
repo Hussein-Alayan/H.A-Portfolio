@@ -28,15 +28,13 @@ export function ColorReactiveButton({
             ? `2px solid ${currentTheme.primary}`
             : "none",
         color: variant === "primary" ? "white" : currentTheme.primary,
+        boxShadow: `0 5px 15px ${currentTheme.primary}20`,
       }}
       whileHover={{
         scale: 1.05,
         boxShadow: `0 10px 25px ${currentTheme.primary}30`,
       }}
       whileTap={{ scale: 0.95 }}
-      animate={{
-        boxShadow: `0 5px 15px ${currentTheme.primary}20`,
-      }}
       transition={{ duration: 0.3 }}
     >
       {children}
@@ -59,14 +57,12 @@ export function ColorReactiveCard({
       style={{
         background: `linear-gradient(135deg, ${currentTheme.primary}15, ${currentTheme.secondary}15), rgba(0, 0, 0, 0.6)`,
         borderColor: `${currentTheme.primary}40`,
+        boxShadow: `0 10px 30px ${currentTheme.primary}20`,
       }}
       whileHover={{
         scale: 1.02,
         boxShadow: `0 20px 40px ${currentTheme.primary}30`,
         borderColor: currentTheme.primary,
-      }}
-      animate={{
-        boxShadow: `0 10px 30px ${currentTheme.primary}20`,
       }}
       transition={{ duration: 0.3 }}
     >
