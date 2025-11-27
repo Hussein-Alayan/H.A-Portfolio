@@ -7,6 +7,7 @@ import {
   useState,
   ReactNode,
 } from "react";
+import { useScrollTracking } from "@/hooks/use-scroll-tracking";
 
 interface ColorTheme {
   primary: string;
@@ -72,52 +73,16 @@ const ScrollColorContext = createContext<ScrollColorContextType | undefined>(
 );
 
 export function ScrollColorProvider({ children }: { children: ReactNode }) {
+  const { activeSection, scrollProgress } = useScrollTracking();
   const [currentTheme, setCurrentTheme] = useState<ColorTheme>(
     colorThemes.hero
   );
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      // Calculate overall scroll progress (0 to 1)
-      const progress = Math.min(scrollY / (documentHeight - windowHeight), 1);
-      setScrollProgress(progress);
-
-      // Determine active section
-      const sections = [
-        "hero",
-        "about",
-        "skills",
-        "projects",
-        "volunteer",
-        "contact",
-      ];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return (
-            rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5
-          );
-        }
-        return false;
-      });
-
-      if (current && current !== activeSection) {
-        setActiveSection(current);
-        setCurrentTheme(colorThemes[current]);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Update theme when active section changes
+    if (colorThemes[activeSection]) {
+      setCurrentTheme(colorThemes[activeSection]);
+    }
   }, [activeSection]);
 
   return (
