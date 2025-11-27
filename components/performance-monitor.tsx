@@ -48,17 +48,6 @@ export function PerformanceMonitor() {
             const entries = list.getEntries();
             const lastEntry = entries[entries.length - 1];
             metrics.largestContentfulPaint = lastEntry.startTime;
-
-            // Log performance metrics in development
-            if (process.env.NODE_ENV === "development") {
-              console.log("🚀 Performance Metrics:", {
-                ...metrics,
-                device: window.innerWidth < 768 ? "mobile" : "desktop",
-                userAgent: navigator.userAgent.includes("Mobile")
-                  ? "mobile"
-                  : "desktop",
-              });
-            }
           });
           lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] });
         } catch (e) {
@@ -95,20 +84,7 @@ export function PerformanceMonitor() {
         }
       }
 
-      // Report performance issues on mobile
-      setTimeout(() => {
-        const isMobile = window.innerWidth < 768;
-        if (
-          isMobile &&
-          metrics.firstContentfulPaint &&
-          metrics.firstContentfulPaint > 2500
-        ) {
-          console.warn(
-            "🐌 Slow mobile performance detected:",
-            metrics.firstContentfulPaint + "ms FCP"
-          );
-        }
-      }, 3000);
+      // Monitor performance metrics (logging removed for production)
     };
 
     // Measure performance after page load
@@ -128,10 +104,7 @@ export function PerformanceMonitor() {
           limit: Math.round(memory.jsHeapSizeLimit / 1048576),
         };
 
-        // Warn if memory usage is high on mobile
-        if (window.innerWidth < 768 && memoryInfo.used > 50) {
-          console.warn("🧠 High memory usage on mobile:", memoryInfo);
-        }
+        // Monitor memory usage (logging removed for production)
       }
     };
 
