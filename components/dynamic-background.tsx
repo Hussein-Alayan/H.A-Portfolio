@@ -16,11 +16,11 @@ export function DynamicBackground() {
         animate={{
           background: `radial-gradient(ellipse at top, ${currentTheme.primary}08, transparent 50%), 
                       radial-gradient(ellipse at bottom right, ${currentTheme.secondary}06, transparent 50%),
-                      radial-gradient(ellipse at bottom left, ${currentTheme.accent}04, transparent 50%)`
+                      radial-gradient(ellipse at bottom left, ${currentTheme.accent}04, transparent 50%)`,
         }}
         transition={{ duration: 2, ease: "easeInOut" }}
       />
-      
+
       {/* Subtle Floating Elements - disabled on mobile for performance */}
       {!isMobile && (
         <div className="fixed inset-0 -z-15 pointer-events-none overflow-hidden">
@@ -31,26 +31,22 @@ export function DynamicBackground() {
               style={{
                 width: `${200 + i * 100}px`,
                 height: `${200 + i * 100}px`,
-                background: i === 0 ? currentTheme.primary : 
-                            i === 1 ? currentTheme.secondary : currentTheme.accent,
+                background:
+                  i === 0
+                    ? currentTheme.primary
+                    : i === 1
+                    ? currentTheme.secondary
+                    : currentTheme.accent,
               }}
               animate={{
-                x: [
-                  `${10 + i * 30}%`, 
-                  `${20 + i * 25}%`, 
-                  `${10 + i * 30}%`
-                ],
-                y: [
-                  `${10 + i * 20}%`, 
-                  `${30 + i * 15}%`, 
-                  `${10 + i * 20}%`
-                ],
+                x: [`${10 + i * 30}%`, `${20 + i * 25}%`, `${10 + i * 30}%`],
+                y: [`${10 + i * 20}%`, `${30 + i * 15}%`, `${10 + i * 20}%`],
               }}
               transition={{
                 duration: 15 + i * 5,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 2
+                delay: i * 2,
               }}
             />
           ))}
