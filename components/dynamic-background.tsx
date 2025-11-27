@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useScrollColor } from "./scroll-color-provider";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DynamicBackground() {
   const { currentTheme, scrollProgress } = useScrollColor();
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -19,39 +21,41 @@ export function DynamicBackground() {
         transition={{ duration: 2, ease: "easeInOut" }}
       />
       
-      {/* Subtle Floating Elements */}
-      <div className="fixed inset-0 -z-15 pointer-events-none overflow-hidden">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full opacity-10 blur-3xl"
-            style={{
-              width: `${200 + i * 100}px`,
-              height: `${200 + i * 100}px`,
-              background: i === 0 ? currentTheme.primary : 
-                          i === 1 ? currentTheme.secondary : currentTheme.accent,
-            }}
-            animate={{
-              x: [
-                `${10 + i * 30}%`, 
-                `${20 + i * 25}%`, 
-                `${10 + i * 30}%`
-              ],
-              y: [
-                `${10 + i * 20}%`, 
-                `${30 + i * 15}%`, 
-                `${10 + i * 20}%`
-              ],
-            }}
-            transition={{
-              duration: 15 + i * 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 2
-            }}
-          />
-        ))}
-      </div>
+      {/* Subtle Floating Elements - disabled on mobile for performance */}
+      {!isMobile && (
+        <div className="fixed inset-0 -z-15 pointer-events-none overflow-hidden">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full opacity-10 blur-3xl"
+              style={{
+                width: `${200 + i * 100}px`,
+                height: `${200 + i * 100}px`,
+                background: i === 0 ? currentTheme.primary : 
+                            i === 1 ? currentTheme.secondary : currentTheme.accent,
+              }}
+              animate={{
+                x: [
+                  `${10 + i * 30}%`, 
+                  `${20 + i * 25}%`, 
+                  `${10 + i * 30}%`
+                ],
+                y: [
+                  `${10 + i * 20}%`, 
+                  `${30 + i * 15}%`, 
+                  `${10 + i * 20}%`
+                ],
+              }}
+              transition={{
+                duration: 15 + i * 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 2
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Scroll Progress Indicator */}
       <motion.div
