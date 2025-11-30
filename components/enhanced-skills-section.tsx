@@ -103,7 +103,7 @@ export function EnhancedSkillsSection() {
               transition={{ delay: 0.2 }}
               className="text-xl text-muted-foreground max-w-2xl mx-auto"
             >
-              Technologies and tools I use to bring ideas to life
+              Technologies I use to build modern applications
             </motion.p>
           </div>
 
@@ -135,24 +135,24 @@ export function EnhancedSkillsSection() {
                     </div>
 
                     <div className="space-y-4">
-                      {category.skills.map((skill, skillIndex) => (
-                        <div key={skill.name} className="space-y-2">
+                      {category.skills.slice(0, 2).map((skill, skillIndex) => (
+                        <div key={skill.name} className="space-y-1">
                           <div className="flex justify-between items-center">
                             <span className="text-sm font-medium text-foreground">
                               {skill.name}
                             </span>
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-secondary/40 text-muted-foreground">
                               {skill.level}%
                             </span>
                           </div>
-                          <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                          <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               whileInView={{ width: `${skill.level}%` }}
                               viewport={{ once: true }}
                               transition={{
                                 delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                                duration: 0.8,
+                                duration: 0.6,
                                 ease: "easeOut",
                               }}
                               className="h-full bg-linear-to-r from-primary to-accent rounded-full"
@@ -160,6 +160,18 @@ export function EnhancedSkillsSection() {
                           </div>
                         </div>
                       ))}
+                      {category.skills.length > 2 && (
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {category.skills.slice(2).map((rest) => (
+                            <span
+                              key={rest.name}
+                              className="text-xs px-2 py-1 rounded-full bg-secondary/40 text-muted-foreground"
+                            >
+                              {rest.name}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </ColorReactiveCard>
@@ -167,44 +179,19 @@ export function EnhancedSkillsSection() {
             ))}
           </div>
 
-          {/* Additional Skills Cloud */}
+          {/* Additional Skills */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center space-y-3"
           >
-            <h3 className="text-xl font-semibold mb-6">
-              <ColorReactiveText variant="accent">
-                Also Working With
-              </ColorReactiveText>
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                "Firebase",
-                "MongoDB",
-                "Redis",
-                "GraphQL",
-                "Stripe API",
-                "JWT Auth",
-                "WebSockets",
-                "PWA",
-                "Electron",
-                "Vue.js",
-              ].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 text-sm rounded-full bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors cursor-default"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
+            <p className="text-xs text-muted-foreground/60 uppercase tracking-wider">
+              Also working with
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Firebase · MongoDB · Redis · Stripe · JWT · PWA
+            </p>
           </motion.div>
         </motion.div>
       </div>
