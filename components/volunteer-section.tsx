@@ -28,7 +28,7 @@ export function VolunteerSection() {
                 Volunteer Work
               </ColorReactiveText>
             }
-            subtitle="Giving back to the community through meaningful volunteer experiences."
+            subtitle="Community service through emergency medical response"
           />
 
           <VisualBreak type="wave" />
@@ -61,18 +61,12 @@ export function VolunteerSection() {
                 <CardContent className="space-y-4">
                   <p className="text-lg font-medium">First Responder</p>
                   <p className="text-muted-foreground leading-relaxed">
-                    As a volunteer First Responder with the Lebanese Red Cross,
-                    I provide emergency medical services to communities across
-                    Lebanon. This role has taught me invaluable lessons in
-                    crisis management, teamwork under pressure, and the
-                    importance of serving others. It's a reminder that
-                    technology and code are tools to make a real difference in
-                    people's lives.
+                    Provided emergency medical services for 2+ years, learning
+                    teamwork, crisis management, and community impact.
                   </p>
                   <div className="pt-4 border-t border-border">
                     <p className="text-sm text-muted-foreground">
-                      Committed to humanitarian service and emergency response
-                      in my community
+                      2022–2024 · First Responder
                     </p>
                   </div>
                 </CardContent>
