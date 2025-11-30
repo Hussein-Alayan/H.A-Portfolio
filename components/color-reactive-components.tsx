@@ -19,23 +19,20 @@ export function ColorReactiveButton({
   return (
     <motion.a
       href={href}
-      className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${className}`}
+      className={`px-5 py-3 rounded-md font-medium transition-colors duration-200 ${className}`}
       style={{
         background:
           variant === "primary" ? currentTheme.gradient : "transparent",
         border:
           variant === "secondary"
-            ? `2px solid ${currentTheme.primary}`
-            : "none",
-        color: variant === "primary" ? "white" : currentTheme.primary,
-        boxShadow: `0 5px 15px ${currentTheme.primary}20`,
+            ? `1px solid ${currentTheme.primary}60`
+            : `1px solid ${currentTheme.primary}40`,
+        color: variant === "primary" ? "#fff" : currentTheme.primary,
+        boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
       }}
-      whileHover={{
-        scale: 1.05,
-        boxShadow: `0 10px 25px ${currentTheme.primary}30`,
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ opacity: 0.92 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2 }}
     >
       {children}
     </motion.a>
@@ -53,18 +50,15 @@ export function ColorReactiveCard({
 
   return (
     <motion.div
-      className={`rounded-xl backdrop-blur-md border transition-all duration-500 bg-background/90 ${className}`}
+      className={`rounded-md border bg-background/80 transition-colors duration-200 ${className}`}
       style={{
-        background: `linear-gradient(135deg, ${currentTheme.primary}15, ${currentTheme.secondary}15), rgba(0, 0, 0, 0.6)`,
-        borderColor: `${currentTheme.primary}40`,
-        boxShadow: `0 10px 30px ${currentTheme.primary}20`,
+        borderColor: `rgba(255,255,255,0.06)`,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
       }}
       whileHover={{
-        scale: 1.02,
-        boxShadow: `0 20px 40px ${currentTheme.primary}30`,
-        borderColor: currentTheme.primary,
+        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.25 }}
     >
       {children}
     </motion.div>
