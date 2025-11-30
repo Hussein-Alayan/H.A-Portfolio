@@ -35,33 +35,29 @@ export function AboutSection() {
     { icon: Code2, label: "Technologies", value: 15, suffix: "+" },
     { icon: Sparkles, label: "AI Projects", value: 5, suffix: "+" },
     { icon: Heart, label: "Red Cross", value: 2, suffix: " yrs" },
-    { icon: GraduationCap, label: "Certifications", value: 3, suffix: "" },
   ];
 
   const highlights = [
     {
       icon: Code2,
-      title: "Full-Stack Development",
-      description:
-        "Building modern web apps with React, Next.js, and TypeScript on the frontend, powered by Python, FastAPI, and Laravel backends.",
+      title: "SE Factory Graduate",
+      description: "2025",
       gradient: "from-blue-500/10 to-cyan-500/10",
       iconColor: "text-blue-400",
     },
     {
-      icon: Sparkles,
-      title: "AI Integration",
-      description:
-        "Creating intelligent solutions using OpenAI and Gemini APIs to automate workflows and enhance user experiences.",
-      gradient: "from-purple-500/10 to-pink-500/10",
-      iconColor: "text-purple-400",
-    },
-    {
       icon: Heart,
-      title: "Community Service",
-      description:
-        "Serving as a First Responder with Lebanese Red Cross, providing emergency medical services and making a real impact.",
+      title: "Red Cross First Responder",
+      description: "2022–2024",
       gradient: "from-red-500/10 to-orange-500/10",
       iconColor: "text-red-400",
+    },
+    {
+      icon: Sparkles,
+      title: "AI Integrations",
+      description: "5+ production projects",
+      gradient: "from-purple-500/10 to-pink-500/10",
+      iconColor: "text-purple-400",
     },
   ];
 
@@ -80,7 +76,7 @@ export function AboutSection() {
             title={
               <ColorReactiveText variant="gradient">About Me</ColorReactiveText>
             }
-            subtitle="Passionate about creating intelligent solutions that make a difference"
+            subtitle="Turning ideas into intelligent apps"
           />
 
           <motion.div
@@ -88,7 +84,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 overflow-hidden"
+            className="grid grid-cols-3 gap-3 md:gap-4 lg:gap-6 overflow-hidden"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -151,14 +147,8 @@ export function AboutSection() {
             className="text-center max-w-3xl mx-auto"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a{" "}
-              <span className="text-foreground font-semibold">
-                full-stack developer from Lebanon
-              </span>{" "}
-              passionate about building intelligent, user-centric web
-              applications. I combine modern web technologies with AI
-              capabilities to create solutions that make a real difference in
-              people's workflows and lives.
+              I build clean, scalable web apps and integrate AI to automate real
+              workflows and make products smarter.
             </p>
           </motion.div>
         </motion.div>
