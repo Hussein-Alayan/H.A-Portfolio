@@ -76,7 +76,7 @@ export function ContactSection() {
                 Let's Connect
               </ColorReactiveText>
             }
-            subtitle="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+            subtitle="Always open to new projects and opportunities."
           />
 
           <VisualBreak type="wave" />
@@ -184,8 +184,8 @@ export function ContactSection() {
                       </ColorReactiveText>
                     </h3>
                     <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-md mx-auto md:max-w-none md:mx-0">
-                      Full-Stack Developer passionate about creating intelligent
-                      solutions with modern web technologies and AI.
+                      Building intelligent solutions with modern web tech and
+                      AI.
                     </p>
                   </ContentBlock>
                   <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 text-base sm:text-lg text-muted-foreground">
