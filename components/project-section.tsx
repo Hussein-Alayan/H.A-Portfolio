@@ -37,7 +37,7 @@ export function ProjectSection() {
                 Featured Projects
               </ColorReactiveText>
             }
-            subtitle="A selection of projects that showcase my technical skills and problem-solving approach."
+            subtitle="Projects that showcase my technical skills"
           />
 
           <VisualBreak type="dots" />
@@ -85,11 +85,8 @@ export function ProjectSection() {
                 </CardHeader>
                 <CardContent className="space-y-4 sm:space-y-6 px-0">
                   <p className="text-muted-foreground leading-relaxed">
-                    A comprehensive appointment management platform featuring an
-                    intelligent AI assistant that helps users schedule, manage,
-                    and optimize their appointments. The system includes
-                    real-time availability tracking, automated reminders, and
-                    smart scheduling suggestions.
+                    Smart scheduling, real-time availability, and automated
+                    reminders.
                   </p>
                   <div>
                     <h4 className="text-sm font-semibold mb-3">
@@ -126,33 +123,25 @@ export function ProjectSection() {
                         <ColorReactiveText variant="accent" className="mt-1">
                           •
                         </ColorReactiveText>
-                        <span>
-                          AI-powered scheduling assistant with natural language
-                          processing
-                        </span>
+                        <span>AI scheduling assistant</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <ColorReactiveText variant="accent" className="mt-1">
                           •
                         </ColorReactiveText>
-                        <span>
-                          Real-time availability management and conflict
-                          detection
-                        </span>
+                        <span>Conflict detection</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <ColorReactiveText variant="accent" className="mt-1">
                           •
                         </ColorReactiveText>
-                        <span>Automated email and SMS reminders</span>
+                        <span>Auto reminders</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <ColorReactiveText variant="accent" className="mt-1">
                           •
                         </ColorReactiveText>
-                        <span>
-                          Analytics dashboard for appointment insights
-                        </span>
+                        <span>Analytics dashboard</span>
                       </li>
                     </ul>
                   </div>
