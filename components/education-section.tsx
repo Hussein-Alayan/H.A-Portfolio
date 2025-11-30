@@ -25,7 +25,7 @@ const educationData = [
     icon: BookOpen,
     status: "Completed",
     description:
-      "Foundation program in information technology covering programming fundamentals, computer networks, and digital systems.",
+      "Foundation in IT covering programming, networks, and digital systems.",
     highlights: [
       "Programming Fundamentals",
       "Computer Networks",
@@ -45,7 +45,7 @@ const educationData = [
     icon: GraduationCap,
     status: "Completed",
     description:
-      "Comprehensive computer science program covering software engineering, algorithms, data structures, database systems, and modern programming paradigms.",
+      "Focused on CS fundamentals, systems, and building real-world software.",
     highlights: [
       "Software Engineering & System Design",
       "Advanced Algorithms & Data Structures",
@@ -65,7 +65,7 @@ const educationData = [
     icon: Code2,
     status: "Completed",
     description:
-      "Specialized technical program focusing on administrative systems, business informatics, and enterprise software solutions.",
+      "Specialized in business information systems and enterprise tools.",
     highlights: [
       "Business Information Systems",
       "Enterprise Resource Planning",
@@ -85,7 +85,7 @@ const educationData = [
     icon: Code2,
     status: "Completed",
     description:
-      "Intensive full-stack software engineering bootcamp focusing on modern web technologies, agile methodologies, and real-world project development.",
+      "Intensive bootcamp in full-stack development and modern web technologies.",
     highlights: [
       "Full-Stack Web Development",
       "Modern JavaScript Frameworks",
@@ -135,9 +135,7 @@ export function EducationSection() {
               </ColorReactiveText>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
-              A chronological path through my educational milestones, from
-              foundational IT knowledge to advanced software engineering
-              expertise.
+              From foundational IT to advanced software engineering
             </p>
           </motion.div>
 
