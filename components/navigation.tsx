@@ -24,13 +24,12 @@ export function Navigation() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b"
+      className="fixed top-0 left-0 right-0 z-50 border-b bg-background/70 backdrop-blur-sm"
       aria-label="Main navigation"
       style={{
-        background: `linear-gradient(135deg, ${currentTheme.background})`,
-        borderColor: `${currentTheme.primary}30`,
+        borderColor: `rgba(255,255,255,0.06)`,
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +52,7 @@ export function Navigation() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                className={`text-sm transition-all duration-300 hover:scale-110 relative ${
+                className={`text-base transition-colors duration-200 relative ${
                   activeSection === item.id
                     ? ""
                     : "text-muted-foreground hover:text-foreground"
@@ -68,8 +67,8 @@ export function Navigation() {
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
-                    style={{ backgroundImage: currentTheme.gradient }}
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-current"
+                    style={{ opacity: 0.5 }}
                     layoutId="activeTab"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -83,12 +82,12 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="md:hidden p-2 rounded-lg transition-colors"
+            className="md:hidden p-2 rounded-md transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
             style={{
-              backgroundColor: `${currentTheme.primary}15`,
+              backgroundColor: "rgba(255,255,255,0.06)",
               color: currentTheme.primary,
             }}
           >
