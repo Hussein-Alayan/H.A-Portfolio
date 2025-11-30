@@ -5,9 +5,7 @@ import { ArrowDown } from "lucide-react";
 import {
   ColorReactiveText,
   ColorReactiveButton,
-  PulsatingOrb,
 } from "./color-reactive-components";
-import { TypingAnimation } from "./typing-animation";
 
 export function HeroSection() {
   return (
@@ -15,15 +13,7 @@ export function HeroSection() {
       id="hero"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full"
     >
-      {/* Single subtle orb - responsive positioning */}
-      <PulsatingOrb
-        size={200}
-        className="top-1/4 right-1/4 opacity-20 sm:block hidden"
-      />
-      <PulsatingOrb
-        size={120}
-        className="top-1/3 right-1/6 opacity-15 sm:hidden block"
-      />
+      {/* Decorative orbs removed for performance & cleaner look */}
 
       <div className="container mx-auto max-w-4xl relative z-10 w-full">
         <motion.div
@@ -32,54 +22,46 @@ export function HeroSection() {
           transition={{ duration: 0.8 }}
           className="text-center space-y-6 sm:space-y-8"
         >
-          {/* Main typing header */}
+          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-tight"
-          >
-            <ColorReactiveText variant="gradient">
-              <TypingAnimation
-                text="Full-Stack Software Engineer"
-                delay={200} // Match parent motion.h1 transition delay (0.2s = 200ms)
-                speed={36}
-              />
-            </ColorReactiveText>
-          </motion.h1>
-
-          {/* Name */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.02 }}
-            transition={{ delay: 1.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-balance cursor-default"
+            transition={{ delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-balance cursor-default leading-[1.08]"
           >
             <ColorReactiveText variant="solid">
               Hussein Alayan
             </ColorReactiveText>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-balance leading-[1.15]"
+          >
+            <ColorReactiveText variant="gradient">
+              Full-Stack Software Engineer
+            </ColorReactiveText>
           </motion.h2>
 
-          {/* Description */}
+          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.7 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed px-4"
+            transition={{ delay: 1.2 }}
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance px-4 leading-[1.3]"
           >
-            Building intelligent web applications with{" "}
-            <ColorReactiveText variant="solid">
-              AI-powered solutions
-            </ColorReactiveText>{" "}
-            and modern automation
+            Building smart, AI-powered web apps
           </motion.p>
 
           {/* Action buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.2 }}
+            transition={{ delay: 1.7 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4"
           >
             <ColorReactiveButton href="#contact" variant="primary">
@@ -95,7 +77,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              delay: 2.7,
+              delay: 2.0,
               repeat: Number.POSITIVE_INFINITY,
               duration: 2,
               repeatType: "reverse",
